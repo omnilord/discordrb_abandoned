@@ -2809,6 +2809,14 @@ module Discordrb
 
     alias_method :general_channel, :default_channel
 
+    # Fetch a channel from teh channels list
+    # @param [Channel, #resolve_id] The id of the channel being sought
+    # @return [Channel, nil] The channel found or nil
+    def channel(id)
+      id = id.resolve_id
+      @channels.find { |e| e.id == id }
+    end
+
     # @return [Role] The @everyone role on this server
     def everyone_role
       role(@id)
